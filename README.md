@@ -53,10 +53,10 @@ employee:
       default: false
 ```
 
-A continuación, se proporciona la sentencia SQL (compatible con MariaDB) para crear la tabla:
+A continuación, se proporciona la sentencia SQL para crear la tabla en MariaDB:
 
 ```sql
-CREATE TABLE employees (
+CREATE TABLE tbl_employees (
     employee_id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
@@ -73,4 +73,86 @@ CREATE TABLE employees (
     recorder VARCHAR(255) DEFAULT '',
     active BOOLEAN DEFAULT FALSE
 ) AUTO_INCREMENT=1;
+```
+A continuación, se proporciona la especificación OpenAPI:
+
+```yaml
+openapi: 3.0.0
+info:
+  title: Employees API
+  version: 1.0.0
+paths:
+  /employees:
+    get:
+      summary: Retrieve a list of employees
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summary: Create a new employee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+      responses:
+        '201':
+          description: Employee created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+components:
+  schemas:
+    Employee:
+      type: object
+      properties:
+        employee_id:
+          type: integer
+          format: int32
+        first_name:
+          type: string
+          maxLength: 255
+        last_name:
+          type: string
+          maxLength: 255
+        birth_date:
+          type: string
+          format: date
+        address:
+          type: string
+          maxLength: 255
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        phone_number:
+          type: integer
+        document_type:
+          type: string
+          enum: ['DNI', 'RUC', 'CE', 'PPT']
+        document_number:
+          type: integer
+        position:
+          type: string
+          enum: ['TM', 'LT', 'PO', 'CL']
+          default: 'TM'
+        additional_info:
+          type: string
+          maxLength: 255
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        recorder:
+          type: string
+          maxLength: 255
+        active:
+          type: boolean
+          default: false
+      required:
+        - first_name
+        - last_name
 ```
