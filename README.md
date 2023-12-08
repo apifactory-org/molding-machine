@@ -4,7 +4,7 @@ Este repositorio es parte integral del proyecto "API Factory", una aplicación c
 
 ## Modelo de Datos
 
-El aplicativo emplea un modelo de datos que define la estructura de una entidad llamada empleado:
+El aplicativo genera un modelo de datos que define la estructura de una entidad llamada empleado:
 
 ```yaml
 employee:
