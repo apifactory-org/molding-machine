@@ -4,7 +4,56 @@ Este repositorio es parte integral del proyecto "API Factory", una aplicación c
 
 ## Modelo de Datos
 
-El aplicativo emplea un modelo de datos que define la estructura de la tabla de empleados en la base de datos. A continuación, se proporciona la sentencia SQL (compatible con MariaDB) para crear la tabla:
+El aplicativo emplea un modelo de datos que define la estructura de una entidad llamada empleado:
+
+```yaml
+employee:
+  properties:
+    employee_id:
+      type: integer
+      primary_key: true
+      auto_increment: true
+    first_name:
+      type: string
+      not_null: true
+    last_name:
+      type: string
+      not_null: true
+    birth_date:
+      type: date
+    address:
+      type: string
+    email:
+      type: string
+    phone_number:
+      type: string
+    document_type:
+      type: string
+      enum: ['DNI', 'RUC', 'CE', 'PPT']
+    document_number:
+      type: string
+    position:
+      type: string
+      enum: ['TM', 'LT', 'PO', 'CL']
+      default: 'TM'
+    additional_info:
+      type: string
+    created:
+      type: datetime
+      default: 'CURRENT_TIMESTAMP'
+    updated:
+      type: datetime
+      default: 'CURRENT_TIMESTAMP'
+      on_update: 'CURRENT_TIMESTAMP'
+    recorder:
+      type: string
+      default: ''
+    active:
+      type: boolean
+      default: false
+```
+
+A continuación, se proporciona la sentencia SQL (compatible con MariaDB) para crear la tabla:
 
 ```sql
 CREATE TABLE employees (
