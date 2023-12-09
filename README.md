@@ -29,25 +29,25 @@ employee:
       type: string
     document_type:
       type: string
-      enum: ['DNI', 'RUC', 'CE', 'PPT']
+      enum: ["DNI", "RUC", "CE", "PPT"]
     document_number:
       type: string
     position:
       type: string
-      enum: ['TM', 'LT', 'PO', 'CL']
-      default: 'TM'
+      enum: ["TM", "LT", "PO", "CL"]
+      default: "TM"
     additional_info:
       type: string
     created:
       type: datetime
-      default: 'CURRENT_TIMESTAMP'
+      default: "CURRENT_TIMESTAMP"
     updated:
       type: datetime
-      default: 'CURRENT_TIMESTAMP'
-      on_update: 'CURRENT_TIMESTAMP'
+      default: "CURRENT_TIMESTAMP"
+      on_update: "CURRENT_TIMESTAMP"
     recorder:
       type: string
-      default: ''
+      default: ""
     active:
       type: boolean
       default: false
@@ -64,13 +64,13 @@ CREATE TABLE tbl_employees (
     address VARCHAR(255),
     email VARCHAR(255),
     phone_number INT,
-    document_type ENUM('DNI', 'RUC', 'CE', 'PPT'),
+    document_type ENUM("DNI", "RUC", "CE", "PPT"),
     document_number INT,
-    position ENUM('TM', 'LT', 'PO', 'CL') DEFAULT 'TM',
+    position ENUM("TM", "LT", "PO", "CL") DEFAULT "TM",
     additional_info VARCHAR(255),
     created DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    recorder VARCHAR(255) DEFAULT '',
+    recorder VARCHAR(255) DEFAULT "",
     active BOOLEAN DEFAULT FALSE
 ) AUTO_INCREMENT=1;
 ```
@@ -86,7 +86,7 @@ paths:
     get:
       summary: Retrieve a list of employees
       responses:
-        '200':
+        "200":
           description: Successful response
     post:
       summary: Create a new employee
@@ -94,14 +94,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Employee'
+              $ref: "#/components/schemas/Employee"
       responses:
-        '201':
+        "201":
           description: Employee created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Employee'
+                $ref: "#/components/schemas/Employee"
 components:
   schemas:
     Employee:
@@ -130,13 +130,13 @@ components:
           type: integer
         document_type:
           type: string
-          enum: ['DNI', 'RUC', 'CE', 'PPT']
+          enum: ["DNI", "RUC", "CE", "PPT"]
         document_number:
           type: integer
         position:
           type: string
-          enum: ['TM', 'LT', 'PO', 'CL']
-          default: 'TM'
+          enum: ["TM", "LT", "PO", "CL"]
+          default: "TM"
         additional_info:
           type: string
           maxLength: 255
